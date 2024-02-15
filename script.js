@@ -13,6 +13,7 @@ function fromDir(startPath, callback) {
   if (!fs.existsSync(startPath)) {
     console.log("Directory not found: ", startPath);
     return;
+    
   }
   
   const files = fs.readdirSync(startPath);
