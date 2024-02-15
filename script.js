@@ -14,7 +14,7 @@ function fromDir(startPath, callback) {
     console.log("Directory not found: ", startPath);
     return;
   }
-
+  
   const files = fs.readdirSync(startPath);
   files.forEach((file) => {
     const filename = path.join(startPath, file);
