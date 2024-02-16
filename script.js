@@ -2,8 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const searchString = 'shoaib';
-const directoryToCheck = './src'; // The directory you want to check
-
+const directoryToCheck = 'src'; 
 function searchInFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   return content.includes(searchString);
@@ -13,7 +12,7 @@ function fromDir(startPath, callback) {
   if (!fs.existsSync(startPath)) {
     console.log("Directory not found: ", startPath);
     return;
-    
+
   }
   
   const files = fs.readdirSync(startPath);
@@ -21,7 +20,7 @@ function fromDir(startPath, callback) {
     const filename = path.join(startPath, file);
     const stat = fs.lstatSync(filename);
     if (stat.isDirectory()) {
-      fromDir(filename, callback); // Recursive call to handle subdirectories
+      fromDir(filename, callback); 
     } else {
       callback(filename);
     }
