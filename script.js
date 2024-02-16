@@ -30,6 +30,7 @@ function fromDir(startPath, callback) {
 let found = false;
 fromDir(directoryToCheck, (filename) => {
   if (searchInFile(filename)) {
+    process.exit(1)
     console.log(`String found in file: ${filename}`);
     found = true;
   }
