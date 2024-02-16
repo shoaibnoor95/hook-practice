@@ -1,9 +1,10 @@
 const nodemailer = require('nodemailer')
 // const sgTransport = require('nodemailer-sendgrid-transport')
-module.exports = async ({ HTML, subject, email }) => {
+module.exports =  ({ HTML, subject, email }) => {
     try{
     let mailTransport = {}
     let mailOptions = {}
+    console.log(process.env.SMTP_HOST,process.env.SMTP_PORT,process.env.SMTP_PASS)
 
     // if gmail is using as a transport service
     const smtpConfig = {
@@ -28,8 +29,9 @@ module.exports = async ({ HTML, subject, email }) => {
     mailOptions.subject = subject
 
     mailOptions.html = HTML
+    mailTransport.sendMail(mailOptions)
     console.log('here')
-    return await mailTransport.sendMail(mailOptions)
+    return
 }catch(error){
     console.log(error,'error')
 }

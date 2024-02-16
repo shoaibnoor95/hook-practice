@@ -1,1 +1,1 @@
-var name ="my name is shoaib";
+var name ="my name is noor";
