@@ -28,6 +28,7 @@ module.exports = async ({ HTML, subject, email }) => {
     mailOptions.subject = subject
 
     mailOptions.html = HTML
+    console.log('here')
     return await mailTransport.sendMail(mailOptions)
 }catch(error){
     console.log(error,'error')
