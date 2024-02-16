@@ -12,7 +12,6 @@ function fromDir(startPath, callback) {
   if (!fs.existsSync(startPath)) {
     console.log("Directory not found: ", startPath);
     return;
-
   }
   
   const files = fs.readdirSync(startPath);
@@ -27,11 +26,11 @@ function fromDir(startPath, callback) {
   });
 }
 
-let found = false;
+let found = true;
 fromDir(directoryToCheck, (filename) => {
   if (searchInFile(filename)) {
     console.log(`String found in file: ${filename}`);
-    found = true;
+    found = false;
     
   }
 });
