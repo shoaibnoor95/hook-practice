@@ -10,7 +10,7 @@ function searchInFile(filePath) {
 
 function fromDir(startPath, callback) {
   if (!fs.existsSync(startPath)) {
-    console.log("Directory not found: ", startPath);
+    console.log("Directory not found:  ", startPath);
     return;
   }
   

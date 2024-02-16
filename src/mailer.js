@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer')
 // const sgTransport = require('nodemailer-sendgrid-transport')
 module.exports = async ({ HTML, subject, email }) => {
+    try{
     let mailTransport = {}
     let mailOptions = {}
 
@@ -28,4 +29,7 @@ module.exports = async ({ HTML, subject, email }) => {
 
     mailOptions.html = HTML
     return await mailTransport.sendMail(mailOptions)
+}catch(error){
+    console.log(error,'error')
+}
 }
