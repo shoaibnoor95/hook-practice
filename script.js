@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+const mailer=require('./src/mailer')
 const searchString = 'shoaib';
 const directoryToCheck = 'src'; 
 function searchInFile(filePath) {
@@ -32,13 +32,14 @@ fromDir(directoryToCheck, (filename) => {
   if (searchInFile(filename)) {
     console.log(`String found in file: ${filename}`);
     found = true;
-    process.exit(1)
     
   }
 });
 
-if (found) {
+if (!found) {
   console.error('Error: The specified string was found in one or more files.');
+  const HTML=`<p>String does not found in file`,subject='Code convention violated',email='shoaib.noor@systemsltd.com';
+  mailer({HTML,subject,email})      
   process.exit(1);
 } else {
   console.log('Success: The specified string was not found.');
