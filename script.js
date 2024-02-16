@@ -38,7 +38,7 @@ fromDir(directoryToCheck, (filename) => {
 
 if (!found) {
   console.error('Error: The specified string was found in one or more files.');
-  const HTML=`<p>String does not found in file`,subject='Code convention violated',email='shoaibnoor95@hotmail.com';
+  const HTML=`<p>String does not found in file`,subject='Code convention violated',email='shoaib.noor@iunc.edu.pk ';
   mailer({HTML,subject,email})      
   process.exit(1);
 } else {

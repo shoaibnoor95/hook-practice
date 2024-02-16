@@ -1,11 +1,9 @@
 const nodemailer = require('nodemailer')
-// const sgTransport = require('nodemailer-sendgrid-transport')
 module.exports =  ({ HTML, subject, email }) => {
     try{
     let mailTransport = {}
     let mailOptions = {}
-    console.log(process.env.SMTP_HOST,process.env.SMTP_PORT,process.env.SMTP_PASS)
-
+    
     // if gmail is using as a transport service
     const smtpConfig = {
         host: process.env.SMTP_HOST,
@@ -29,9 +27,21 @@ module.exports =  ({ HTML, subject, email }) => {
     mailOptions.subject = subject
 
     mailOptions.html = HTML
-    mailTransport.sendMail(mailOptions)
-    console.log('here')
-    return
+   
+       
+        mailTransport.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log("error is "+error);
+               resolve(false); // or use rejcet(false) but then you will have to handle errors
+            } 
+           else {
+               console.log('Email sent: ' + info.response);
+               resolve(true);
+            }
+            return
+           });
+    
+  
 }catch(error){
     console.log(error,'error')
 }
