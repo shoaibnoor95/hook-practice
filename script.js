@@ -2,8 +2,8 @@ require('dotenv').config()
 const fs = require('fs');
 const path = require('path');
 const mailer=require('./src/mailer')
-const searchString = 'shoaib';
-const directoryToCheck = 'src'; 
+const searchString = 'Sequelize.define(';
+const directoryToCheck = '../coding-challenge-backend/'; 
 function searchInFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   return content.includes(searchString);
@@ -29,17 +29,19 @@ function fromDir(startPath, callback) {
 
 let found = true;
 fromDir(directoryToCheck, (filename) => {
-  if (searchInFile(filename)) {
-    console.log(`String found in file: ${filename}`);
+  if (!searchInFile(filename)) {
+    console.log(`String not found in file: ${filename}`);
     found = false;
     
   }
 });
 
 if (!found) {
-  console.error('Error: The specified string was found in one or more files.');
+  console.error('Error: The specified string was not found in one or more files.');
   const HTML=`<p>String does not found in file`,subject='Code convention violated',email='shoaib.noor@iunc.edu.pk ';
+  
   mailer({HTML,subject,email})      
+  console.log(1)
   process.exit(1);
 } else {
   console.log('Success: The specified string was not found.');
